@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 export const connectDB = async () => {
   try {
     mongoose.connection.on("connected", () => {
-      console.log("Connected to database successfully");
+      console.log("[MONGO_DB]: Database Connected successfully");
     });
     mongoose.connection.on("error", (err) => {
       console.log("Error in connecting to database.", err);
