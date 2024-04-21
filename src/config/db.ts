@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { getConfig } from "./env-config";
 
 export const connectDB = async () => {
   try {
@@ -8,7 +9,7 @@ export const connectDB = async () => {
     mongoose.connection.on("error", (err) => {
       console.log("Error in connecting to database.", err);
     });
-    await mongoose.connect(process.env.CONNECTION_STRING as string);
+    await mongoose.connect(getConfig("connectionString") as string);
   } catch (err) {
     console.error("Failed to connect to database.", err);
     process.exit(1);
