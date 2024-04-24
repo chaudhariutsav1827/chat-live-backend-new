@@ -1,17 +1,26 @@
 import jwt from "jsonwebtoken";
-import { Schema, model } from "mongoose";
+import { Model, Schema, model } from "mongoose";
 import { getConfig } from "../../../config";
+import { IUser } from "../interfaces";
 
-const userSchema = new Schema(
+interface IUserMethods extends Document {
+  generateJWTToken: () => Promise<string>;
+}
+
+type UserModel = Model<IUser, {}, IUserMethods>;
+
+const userSchema = new Schema<IUser, UserModel, IUserMethods>(
   {
     name: String,
     email: String,
     password: String,
     role: String,
-    friends: {
-      type: Array<Schema.Types.ObjectId>,
-      ref: "User",
-    },
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   {
     timestamps: true,
@@ -35,4 +44,4 @@ userSchema.method("generateJWTToken", async function () {
   );
 });
 
-export const user = model("User", userSchema);
+export const User = model<IUser, UserModel>("User", userSchema);

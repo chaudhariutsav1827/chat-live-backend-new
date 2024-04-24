@@ -6,5 +6,5 @@ export interface IUser {
   email: string;
   password?: string;
   role: string;
-  friends: Array<Types.ObjectId>;
+  friends: Types.Array<Types.ObjectId>;
 }
