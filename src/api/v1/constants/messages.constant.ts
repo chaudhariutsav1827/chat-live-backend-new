@@ -8,6 +8,7 @@ export const Messages = {
       UserDetails: "User details fetched successfully",
       ResetPassword: "Reset password link has been sent to ",
       ChangePassword: "Password changed successfully",
+      AllUsers: "Users fetched successfully",
     },
     Error: {
       EmailRequired: "Email is required",
@@ -23,6 +24,11 @@ export const Messages = {
     },
     Update: {
       UserDetails: "User details updated successfully",
+    },
+  },
+  Message: {
+    Success: {
+      AllMessage: "Messages fetched successfully",
     },
   },
 };

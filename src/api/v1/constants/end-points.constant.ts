@@ -5,6 +5,7 @@ export const EndPoints = {
     Get: {
       Logout: "logout",
       Profile: "me",
+      All: "all",
     },
     Post: {
       Register: "register",
@@ -13,6 +14,15 @@ export const EndPoints = {
       ResetPassword: "reset-password",
       ChangePassword: "change-password",
       UpdateProfile: "update-me",
+    },
+  },
+  Message: {
+    Path: "message",
+    Get: {
+      All: "all",
+    },
+    Post: {
+      Send: "send",
     },
   },
 };

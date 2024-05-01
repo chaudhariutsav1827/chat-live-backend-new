@@ -16,8 +16,9 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
       return next(new AppError(Messages.User.Error.UserExists, 400));
     }
 
+    const capitalizedFirstName = name.charAt(0).toUpperCase() + name.slice(1);
     const user = await User.create({
-      name,
+      name: capitalizedFirstName,
       email,
       password,
     });
@@ -33,7 +34,7 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
     res.status(200).json({
       success: true,
       message: Messages.User.Success.Registration,
-      data: {token},
+      data: { token },
     });
   } catch (error: any) {
     return next(new AppError(error.message, 500));
@@ -57,11 +58,26 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
     res.status(200).json({
       success: true,
       message: Messages.User.Success.Login,
-      data: {token},
+      data: { token },
     });
   } catch (error: any) {
     return next(new AppError(error.message, 500));
   }
 };
 
-export { login, register };
+const allUsers = async (req: Request, res: Response, next: NextFunction) => {
+  const { userId } = req.body.user;
+  try {
+    const users = await User.find({ _id: { $ne: userId } }).select('-password -email');
+
+    res.status(200).json({
+      success: true,
+      message: Messages.User.Success.AllUsers,
+      data: users,
+    });
+  } catch (error: any) {
+    return next(new AppError(error.message, 500));
+  }
+};
+
+export { login, register, allUsers };

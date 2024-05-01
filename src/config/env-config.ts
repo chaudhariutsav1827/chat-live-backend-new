@@ -4,7 +4,7 @@ conf();
 
 const config = {
   port: process.env.PORT || 3000,
-  connectionString: process.env.CONNECTION_STRING,
+  connectionString: "mongodb://localhost:27017/chat-live?",//process.env.CONNECTION_STRING
   production: process.env.PRODUCTION,
   jwtSecretKey: process.env.JWT_SECRET_KEY || "",
   tokenHeaderKey: process.env.TOKEN_HEADER_KEY,

@@ -35,6 +35,7 @@ userSchema.method("generateJWTToken", async function () {
       userId: this._id,
       email: this.email,
       role: this.role,
+      name: this.name,
     },
     jwtSecretKey,
     {
