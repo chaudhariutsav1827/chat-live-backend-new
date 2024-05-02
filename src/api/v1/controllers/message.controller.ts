@@ -38,9 +38,8 @@ const sendMessage = async (req: Request, res: Response, next: NextFunction) => {
       message: Messages.Message.Success.AllMessage,
       data: newMessage,
     });
-    console.log(to);
     
-    socketServer.sockets.in(to).emit('new-message',message)
+    socketServer.sockets.in(to).emit('new-message',newMessage)
   } catch (error: any) {
     return next(new AppError(error.message, 500));
   }
